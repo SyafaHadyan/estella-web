@@ -49,14 +49,52 @@
 // updateSlides();
 // startAutoSlide();
 
+// document.addEventListener('DOMContentLoaded', () => {
+//     const mainScreenshot = document.getElementById('main-screenshot');
+//     const thumbnails = document.querySelectorAll('.thumbnail');
+//     const arrowLeft = document.getElementById('arrow-left');
+//     const arrowRight = document.getElementById('arrow-right');
+
+//     const isValidPath = Array.from(thumbnails).every(thumbnail => 
+//         thumbnail.src.includes('assets/pictures/section-2/')
+//     );
+
+//     if (!isValidPath) {
+//         return;
+//     }
+
+//     let currentIndex = 0;
+
+//     const updateMainScreenshot = (index) => {
+//         mainScreenshot.src = thumbnails[index].src;
+//     };
+
+//     arrowLeft.addEventListener('click', () => {
+//         currentIndex = (currentIndex - 1 + thumbnails.length) < 0 ? thumbnails.length - 1 : (currentIndex - 1 + thumbnails.length) % thumbnails.length;
+//         updateMainScreenshot(currentIndex);
+//     });
+
+//     arrowRight.addEventListener('click', () => {
+//         currentIndex = (currentIndex + 1) % thumbnails.length;
+//         updateMainScreenshot(currentIndex);
+//     });
+
+//     thumbnails.forEach((thumbnail, index) => {
+//         thumbnail.addEventListener('click', () => {
+//             currentIndex = index;
+//             updateMainScreenshot(currentIndex);
+//         });
+//     });
+// });
+
 document.addEventListener('DOMContentLoaded', () => {
-    const mainImage = document.getElementById('main-image');
+    const mainImage = document.getElementById('main-screenshot');
     const thumbnails = document.querySelectorAll('.thumbnail');
-    const arrowLeft = document.getElementById('arrow-left');
-    const arrowRight = document.getElementById('arrow-right');
+    const arrowLeft = document.getElementById('screenshot-arrow-left');
+    const arrowRight = document.getElementById('screenshot-arrow-right');
 
     let currentIndex = 0;
-    const images = Array.from(thumbnails).map(thumbnail => thumbnail.getAttribute('data-image'));
+    const images = Array.from(thumbnails).map(thumbnail => thumbnail.getAttribute('src'));
 
     function isValidImagePath(path) {
         return path && path.startsWith('assets/pictures/section-2/');
@@ -64,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     thumbnails.forEach((thumbnail, index) => {
         thumbnail.addEventListener('click', () => {
-            const imagePath = thumbnail.getAttribute('data-image');
+            const imagePath = thumbnail.getAttribute('src');
             if (isValidImagePath(imagePath)) {
                 mainImage.src = imagePath;
                 currentIndex = index;
@@ -107,43 +145,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* Video player */
 
-document.addEventListener('DOMContentLoaded', () => {
-    const mainVideo = document.getElementById('main-video');
-    const videoThumbnails = document.querySelectorAll('.video-selector .thumbnail');
-    const videoArrowLeft = document.getElementById('video-arrow-left');
-    const videoArrowRight = document.getElementById('video-arrow-right');
-    const videoDots = document.querySelectorAll('.video-indicator .dot');
-    const selectedVideo = document.querySelectorAll('.video-selector .thumbnail');
+// document.addEventListener('DOMContentLoaded', () => {
+//     const mainVideo = document.getElementById('main-video');
+//     const videoThumbnails = document.querySelectorAll('.video-selector .thumbnail');
+//     const videoArrowLeft = document.getElementById('video-arrow-left');
+//     const videoArrowRight = document.getElementById('video-arrow-right');
+//     const videoDots = document.querySelectorAll('.video-indicator .dot');
+//     const selectedVideo = document.querySelectorAll('.video-selector .thumbnail');
 
-    let currentVideoIndex = 0;
-    const videos = Array.from(videoThumbnails).map(thumbnail => thumbnail.getAttribute('data-video'));
+//     let currentVideoIndex = 0;
+//     const videos = Array.from(videoThumbnails).map(thumbnail => thumbnail.getAttribute('data-video'));
 
-    function updateVideo() {
-        mainVideo.src = videos[currentVideoIndex];
-        videoDots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentVideoIndex);
-        });
-        selectedVideo.forEach((thumbnail, index) => {
-            thumbnail.classList.toggle('active', index === currentVideoIndex);
-        });
-    }
+//     function updateVideo() {
+//         mainVideo.src = videos[currentVideoIndex];
+//         videoDots.forEach((dot, index) => {
+//             dot.classList.toggle('active', index === currentVideoIndex);
+//         });
+//         selectedVideo.forEach((thumbnail, index) => {
+//             thumbnail.classList.toggle('active', index === currentVideoIndex);
+//         });
+//     }
 
-    videoThumbnails.forEach((thumbnail, index) => {
-        thumbnail.addEventListener('click', () => {
-            currentVideoIndex = index;
-            updateVideo();
-        });
-    });
+//     videoThumbnails.forEach((thumbnail, index) => {
+//         thumbnail.addEventListener('click', () => {
+//             currentVideoIndex = index;
+//             updateVideo();
+//         });
+//     });
 
-    videoArrowLeft.addEventListener('click', () => {
-        currentVideoIndex = (currentVideoIndex > 0) ? currentVideoIndex - 1 : videos.length - 1;
-        updateVideo();
-    });
+//     videoArrowLeft.addEventListener('click', () => {
+//         currentVideoIndex = (currentVideoIndex > 0) ? currentVideoIndex - 1 : videos.length - 1;
+//         updateVideo();
+//     });
 
-    videoArrowRight.addEventListener('click', () => {
-        currentVideoIndex = (currentVideoIndex < videos.length - 1) ? currentVideoIndex + 1 : 0;
-        updateVideo();
-    });
+//     videoArrowRight.addEventListener('click', () => {
+//         currentVideoIndex = (currentVideoIndex < videos.length - 1) ? currentVideoIndex + 1 : 0;
+//         updateVideo();
+//     });
 
-    updateVideo();
-});
+//     updateVideo();
+// });
